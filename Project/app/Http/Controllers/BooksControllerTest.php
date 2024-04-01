@@ -1,8 +1,8 @@
 <?php
 
 namespace Tests\App\Http\Controllers;
-
-use TestCase;
+namespace Tests\Feature;
+use Tests\TestCase;
 
 class BooksControllerTest extends TestCase
 {
@@ -58,11 +58,12 @@ class BooksControllerTest extends TestCase
     public function show_route_should_not_match_an_invalid_route()
     {
         $this->get('/books/this-is-invalid');
-        $this->assertNotRegExp(
-            '/Book not found/',
-            $this->response->getContent(),
-            'BooksController@show route matching when it should not.'
-        );
+        // $this->assertNotRegExp(
+        //     '/Book not found/',
+        //     $this->response->getContent(),
+        //     'BooksController@show route matching when it should not.'
+        // );
+        $this->assertStringNotMatchesFormat('/Book not found/', $this->response->getContent(), 'BooksController@show route matching when it should not.');
     }
 
     /** @test **/
@@ -90,7 +91,8 @@ class BooksControllerTest extends TestCase
 
         $this
             ->seeStatusCode(201)
-            ->seeHeaderWithRegExp('Location', '#/books/[\d]+$#');
+            // ->seeHeaderWithRegExp('Location', '#/books/[\d]+$#');
+            ->assertMatchesRegularExpression('/\/books\/\d+$/', $this->response->headers->get('Location'));
     }
 
     /** @test **/

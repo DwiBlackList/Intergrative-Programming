@@ -75,4 +75,11 @@ class BooksController
         $book->delete();
         return response(null, 204);
     }
+
+    public function destroyall()
+    {
+        $book = Book::truncate();
+        // $book->delete();x
+        return response(null, 204);
+    }
 }
