@@ -20,27 +20,27 @@ class HandlerTest extends TestCase
     /** @test */
     public function it_responds_with_html_when_json_is_not_accepted()
     {
+        // Make the mock a partial, we only want to mock the `isDebugMode` method
         $subject = m::mock(Handler::class)->makePartial();
-        $subject
-            ->shouldReceive('isDebugMode')
-            ->andReturn(false);
-
+        $subject->shouldNotReceive('isDebugMode');
+        // Mock the interaction with the Request
         $request = m::mock(Request::class);
-        $request
-            ->shouldReceive('wantsJson')
-            ->andReturn(false);
-        $request->shouldReceive('expectsJson')->andReturn(false);
-
-        $exception = m::mock(\Exception::class, ['Doh!']);
-        $exception
-            ->shouldReceive('getMessage')
-            ->andReturn('Doh!');
-
-        /** @var Response $result */
+        $request->shouldReceive('wantsJson')->andReturn(false);
+        // Set expectation for expectsJson method
+        $request->shouldReceive('expectsJson')->andReturn(false); // Assuming JSON is not expected
+        // Mock the interaction with the exception
+        $exception = m::mock(\Exception::class, ['Error!']);
+        $exception->shouldNotReceive('getStatusCode');
+        $exception->shouldNotReceive('getTrace');
+        $exception->shouldNotReceive('getMessage');
+        // Call the method under test, this is not a mocked method.
         $result = $subject->render($request, $exception);
+
+        // Assert that `render` does not return a JsonResponse
 
         $this->assertNotInstanceOf(JsonResponse::class, $result);
     }
+
 
     /** @test */
     public function it_responds_with_json_for_json_consumers()

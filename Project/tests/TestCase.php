@@ -3,13 +3,12 @@
 namespace Tests;
 
 use Laravel\Lumen\Testing\TestCase as BaseTestCase;
-// use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 abstract class TestCase extends BaseTestCase
 {
-    // use MockeryPHPUnitIntegration;
+    use MockeryPHPUnitIntegration;
     /**
      * Creates the application.
      *

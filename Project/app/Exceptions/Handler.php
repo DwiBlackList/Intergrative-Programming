@@ -58,7 +58,6 @@ class Handler extends ExceptionHandler
                 'message' => (string) $exception->getMessage(),
                 'status' => 400
             ];
-
             if ($exception instanceof HttpException) {
                 $response['message'] = Response::$statusTexts[$exception->getStatusCode()];
                 $response['status'] = $exception->getStatusCode();
@@ -66,13 +65,13 @@ class Handler extends ExceptionHandler
                 $response['message'] = Response::$statusTexts[Response::HTTP_NOT_FOUND];
                 $response['status'] = Response::HTTP_NOT_FOUND;
             }
-
             if ($this->isDebugMode()) {
                 $response['debug'] = [
                     'exception' => get_class($exception),
-                    'trace' => $exception->getTraceAsString()
+                    'trace' => $exception->getTrace()
                 ];
             }
+
             return response()->json(['error' => $response], $response['status']);
         }
         return parent::render($request, $exception);
