@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Book;
+use App\Models\Book;
 
 class BookFactory extends Factory
 {

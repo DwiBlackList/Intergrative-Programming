@@ -4,7 +4,7 @@ namespace Tests\App\Http\Controllers;
 
 namespace Tests\Feature;
 
-use App\Book;
+use App\Models\Book;
 use Tests\TestCase;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 

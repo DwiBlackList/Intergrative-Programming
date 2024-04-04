@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\Book;
+use App\Models\Book;
 
 /**
  * Class BooksController
@@ -28,7 +28,7 @@ class BooksController
         // } catch (ModelNotFoundException $e) {
         //     return response()->json([
         //         'error' => [
-        //             'message' => 'Book not found'
+        //             'message' => 'Not Found'
         //         ]
         //     ], 404);
         // }
