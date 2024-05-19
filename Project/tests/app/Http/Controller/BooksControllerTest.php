@@ -181,9 +181,10 @@ class BooksControllerTest extends TestCase
         $this->assertArrayHasKey('data', $body);
         $data = $body['data'];
         $this->assertArrayHasKey('created', $data);
-        $this->assertEquals(Carbon::now()->toIso8601String(), $data['created']);
+        $waktu_saat_ini = Carbon::now()->toIso8601String();
+        $this->assertEquals($waktu_saat_ini, $data['created']);
         $this->assertArrayHasKey('updated', $data);
-        $this->assertEquals(Carbon::now()->toIso8601String(), $data['updated']);
+        $this->assertEquals($waktu_saat_ini, $data['updated']);
     }
 
     /** @test **/

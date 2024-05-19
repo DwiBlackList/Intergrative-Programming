@@ -46,15 +46,14 @@ abstract class TestCase extends BaseTestCase
      */
     public function seeHeaderWithRegExp($header, $regexp)
     {
-        $this
-            ->seeHasHeader($header)
-            ->assertRegExp(
-                $regexp,
-                $this->response->headers->get($header)
-            );
+        $this->seeHasHeader($header);
+
+        $headerValue = $this->response->headers->get($header);
+        $this->assertMatchesRegularExpression($regexp, $headerValue);
 
         return $this;
     }
+
 
     /**
      * Convenience method for creating a book with an author
