@@ -14,13 +14,13 @@ class BooksControllerTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function setUpMod()
+    public function setUp() : void
     {
         parent::setUp();
         Carbon::setTestNow(Carbon::now('UTC'));
     }
 
-    public function tearDownMod()
+    public function tearDown() : void
     {
         parent::tearDown();
         Carbon::setTestNow();

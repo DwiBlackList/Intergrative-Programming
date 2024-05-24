@@ -119,46 +119,6 @@ class AuthorsControllerTest extends TestCase
             $actual['updated']
         );
     }
-    // public function show_optionally_includes_books()
-    // {
-    //     // Create a book and its associated author
-    //     $book = $this->bookFactory();
-    //     $author = $book->author;
-
-    //     // Send a GET request to the author's endpoint, requesting the inclusion of books
-    //     $this->get(
-    //         "/authors/{$author->id}?include=books",
-    //         ['Accept' => 'application/json']
-    //     );
-
-    //     // Decode the response content
-    //     $body = json_decode($this->response->getContent(), true);
-
-    //     // Check if the response has a 'data' key
-    //     $this->assertArrayHasKey('data', $body);
-    //     $data = $body['data'];
-
-    //     // Check if the 'books' key is present in the data
-    //     $this->assertArrayHasKey('books', $data);
-    //     $this->assertArrayHasKey('data', $data['books']);
-    //     $this->assertCount(1, $data['books']['data']);
-
-    //     // Validate the author's data in the response
-    //     $this->seeJson([
-    //         'id' => $author->id,
-    //         'name' => $author->name,
-    //     ]);
-
-    //     // Validate the included book's data
-    //     $actual = $data['books']['data'][0];
-    //     $this->assertEquals($book->id, $actual['id']);
-    //     $this->assertEquals($book->title, $actual['title']);
-    //     $this->assertEquals($book->description, $actual['description']);
-    //     $this->assertEquals($book->created_at->toIso8601String(), $actual['created']);
-    //     $this->assertEquals($book->updated_at->toIso8601String(), $actual['updated']);
-    // }
-
-
     /** @test **/
     public function store_can_create_a_new_author()
     {
@@ -340,7 +300,7 @@ class AuthorsControllerTest extends TestCase
 
         $this
             ->delete("/authors/{$author->id}")
-            ->seeStatusCode(204)
+            ->seeStatusCode(200)
             ->notSeeInDatabase('authors', ['id' => $author->id])
             ->notSeeInDatabase('books', ['author_id' => $author->id]);
     }

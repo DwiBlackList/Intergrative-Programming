@@ -53,7 +53,7 @@ class AuthorsController extends Controller
     {
         Author::findOrFail($id)->delete();
 
-        return response(null, 204);
+        return response()->json(['Pesan' => "Data Berhasil Di Hapus"], 200);
     }
 
     /**
