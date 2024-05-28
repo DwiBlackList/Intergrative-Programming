@@ -60,3 +60,16 @@ $router->get('/authors/{id:[\d]+}', [
 $router->post('/authors', 'AuthorsController@store');
 $router->put('/authors/{id:[\d]+}', 'AuthorsController@update');
 $router->delete('/authors/{id:[\d]+}', 'AuthorsController@destroy');
+
+
+$router->get('/iuran', 'IuranController@index');
+$router->get('/iuran/{id:[\d]+}', [
+    'as' => 'iuran.show',
+    'uses' => 'IuranController@show'
+]);
+$router->post('/iuran', 'IuranController@store');
+$router->put('/iuran/{id:[\d]+}', 'IuranController@update');
+$router->delete('/iuran/{id:[\d]+}', 'IuranController@destroy');
+
+// api/iuran/tunggakan/{tahun}
+$router->get('/iuran/tunggakan/{tahun:[\d]+}', 'IuranController@tunggakan');
